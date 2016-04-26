@@ -28,6 +28,12 @@ class JobWorker(models.Model):
 	def __str__(self):
 		return str(self.person) + " offers " + str(self.job)
 
+class JobHirer(models.Model):
+	person = models.ForeignKey(Person, related_name='jobs_i_want_done')
+	job = models.ForeignKey(Job, related_name='hirers')
+	def __str__(self):
+		return str(self.person) + " requests " + str(self.job)
+
 
 #class Desire(models.Model):
 #	name = models.CharField(max_length=200)
