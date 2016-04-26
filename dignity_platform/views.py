@@ -31,3 +31,37 @@ def person(request, person_id):
         'person': person,
     }
     return HttpResponse(template.render(context, request))
+
+def jobs(request):
+    some_jobs = Job.objects.order_by('?')[:5]
+    template = loader.get_template('dignity_platform/jobs.html')
+    context = {
+        'some_jobs': some_jobs,
+    }
+    return HttpResponse(template.render(context, request))
+
+def job(request, job_id):
+    job = Job.objects.filter(id=job_id).first()
+    template = loader.get_template('dignity_platform/job.html')
+    context = {
+        'job': job,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+
+def causes(request):
+    some_causes = Cause.objects.order_by('?')[:5]
+    template = loader.get_template('dignity_platform/causes.html')
+    context = {
+        'some_causes': some_causes,
+    }
+    return HttpResponse(template.render(context, request))
+
+def cause(request, cause_id):
+    cause = Cause.objects.filter(id=cause_id).first()
+    template = loader.get_template('dignity_platform/cause.html')
+    context = {
+        'cause': cause,
+    }
+    return HttpResponse(template.render(context, request))

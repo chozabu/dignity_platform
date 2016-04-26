@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dignity</title>
+</head>
+<body>
+{% if cause %}
+    <ul>
+    <li>{{ cause.name }}</li>
+    </ul>
+{% else %}
+    <p>Couldn't find this cause.</p>
+{% endif %}
+</body>
+</html>

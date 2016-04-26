@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dignity</title>
+</head>
+<body>
+{% if job %}
+    <ul>
+    <li>{{ job.name }}</li>
+    </ul>
+{% else %}
+    <p>Couldn't find this job.</p>
+{% endif %}
+</body>
+</html>

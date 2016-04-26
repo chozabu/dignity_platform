@@ -13,14 +13,20 @@ class Person(AbstractUser):
 
 class Cause(models.Model):
 	name = models.CharField(max_length=200)
+	def __str__(self):
+		return str(self.name)
 
 class Job(models.Model):
 	name = models.CharField(max_length=200)
+	def __str__(self):
+		return str(self.name)
 
 
 class JobWorker(models.Model):
 	person = models.ForeignKey(Person, related_name='jobs_i_will_do')
-	jobs = models.ForeignKey(Job, related_name='workers')
+	job = models.ForeignKey(Job, related_name='workers')
+	def __str__(self):
+		return str(self.person) + " offers " + str(self.job)
 
 
 #class Desire(models.Model):
