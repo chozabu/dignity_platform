@@ -5,10 +5,28 @@
     <title>Dignity</title>
 </head>
 <body>
+
 {% if job %}
+    <h2>{{ job.name }}</h2>
+    People offering to do this job:
+
     <ul>
-    <li>{{ job.name }}</li>
+    {{ job.workers.all }}
+    {% for worker in job.workers.all %}
+        <li><a href="/people/{{ worker.id }}/">{{ worker.person.get_full_name }}</a></li>
+    {% endfor %}
     </ul>
+
+
+    People requesting this job to be done:
+
+    <ul>
+    {{ job.hirers.all }}
+    {% for hirer in job.hirers.all %}
+        <li><a href="/people/{{ hirer.id }}/">{{ hirer.person.get_full_name }}</a></li>
+    {% endfor %}
+    </ul>
+
 {% else %}
     <p>Couldn't find this job.</p>
 {% endif %}
