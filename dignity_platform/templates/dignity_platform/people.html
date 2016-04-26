@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dignity</title>
+</head>
+<body>
+{% if some_people %}
+    <ul>
+    {% for person in some_people %}
+        <li><a href="/people/{{ person.id }}/">{{ person.get_full_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No people are available.</p>
+{% endif %}
+</body>
+</html>

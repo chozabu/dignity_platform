@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dignity</title>
+</head>
+<body>
+{% if person %}
+    <ul>
+    <li>{{ person.first_name }}</li>
+    <li>{{ person.last_name }}</li>
+    </ul>
+{% else %}
+    <p>Couldn't find this person.</p>
+{% endif %}
+</body>
+</html>
