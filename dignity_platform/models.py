@@ -52,6 +52,7 @@ class JobWorker(models.Model):
 class JobHirer(models.Model):
 	person = models.ForeignKey(Person, related_name='jobs_i_want_done')
 	job = models.ForeignKey(Job, related_name='hirers')
+	price = models.FloatField(default=15.0)
 	def __str__(self):
 		return str(self.person) + " requests " + str(self.job)
 
