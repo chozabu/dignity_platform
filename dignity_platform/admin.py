@@ -2,10 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Person, Cause, Job, JobWorker, JobHirer
+from . import models
 
-admin.site.register(Person)
-admin.site.register(Cause)
-admin.site.register(Job)
-admin.site.register(JobWorker)
-admin.site.register(JobHirer)
+admin.site.register(models.Person)
+admin.site.register(models.Cause)
+admin.site.register(models.CauseSupporter)
+admin.site.register(models.Job)
+admin.site.register(models.JobWorker)
+admin.site.register(models.JobHirer)

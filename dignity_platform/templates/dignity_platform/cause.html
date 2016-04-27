@@ -9,6 +9,14 @@
     <ul>
     <li>{{ cause.name }}</li>
     </ul>
+
+    People Supporting this Cause:
+
+    <ul>
+    {% for sup in cause.people_supporting_cause.all %}
+        <li><a href="/people/{{ sup.person.id }}/">{{ sup.person.get_full_name }}</a></li>
+    {% endfor %}
+    </ul>
 {% else %}
     <p>Couldn't find this cause.</p>
 {% endif %}

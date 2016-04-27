@@ -25,6 +25,15 @@
         <li><a href="/jobs/{{ task.job.id }}/">{{ task.job.name }}</a></li>
     {% endfor %}
     </ul>
+
+
+    Causes this person Supports:
+
+    <ul>
+    {% for sup in person.causes_i_support.all %}
+        <li><a href="/causes/{{ sup.cause.id }}/">{{ sup.cause.name }}</a></li>
+    {% endfor %}
+    </ul>
 {% else %}
     <p>Couldn't find this person.</p>
 {% endif %}
