@@ -2,8 +2,10 @@
 __author__ = "Alex 'Chozabu' P-B"
 __copyright__ = "Copyright 2016, Chozabu"
 
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.conf.urls.static import static
+from django.views.generic.edit import CreateView
+from django.contrib.auth.forms import UserCreationForm
 
 import dignity.settings as settings
 
@@ -17,6 +19,9 @@ urlpatterns = [
     url(r'^jobs/(?P<job_id>[0-9]+)/$', views.job, name='job'),
     url(r'^causes/$', views.causes, name='causes'),
     url(r'^causes/(?P<cause_id>[0-9]+)/$', views.cause, name='cause'),
+    url(r'^register/$', views.register, name='register'),
+
+        url('^accounts/', include('django.contrib.auth.urls')),
 ]
 
 theme_dir = settings.BASE_DIR + "/startbootstrap-creative-1.0.2"

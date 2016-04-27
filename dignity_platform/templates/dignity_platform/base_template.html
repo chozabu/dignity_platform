@@ -56,6 +56,13 @@
                     <li><a href="/people" > People </a></li>
                     <li><a href="/jobs" > Jobs </a></li>
                     <li><a href="/causes" > Causes </a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="/people/{{ user.id }}" > {{ user.username }} </a></li>
+                    <li><a href="/accounts/logout/?next=/" > logout </a></li>
+                    {% else %}
+                    <li><a href="/register" > signup </a></li>
+                    <li><a href="/accounts/login/?next=/" > login </a></li>
+                    {% endif %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

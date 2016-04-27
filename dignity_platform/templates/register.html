@@ -1,0 +1,28 @@
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}Dignity: Login{% endblock %}
+
+{% block header_content %}<h2>Signup</h2>
+<p>
+
+
+</p>
+{% endblock %}
+
+
+{% block content %}
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+
+<form method="POST" action="">
+    {% csrf_token %}
+    {{userform.as_p}}
+    <input type="submit">
+</form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

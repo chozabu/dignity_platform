@@ -29,6 +29,7 @@ def person(request, person_id):
     template = loader.get_template('dignity_platform/person.html')
     context = {
         'person': person,
+        'supporting_amount': 100-person.self_support*100
     }
     return HttpResponse(template.render(context, request))
 
@@ -65,3 +66,19 @@ def cause(request, cause_id):
         'cause': cause,
     }
     return HttpResponse(template.render(context, request))
+
+from django.contrib.auth.forms import UserCreationForm
+import django
+from .forms import UserForm
+
+def register(request):
+    if request.method == 'POST':
+        uf = UserForm(request.POST, prefix='user')
+        if uf.is_valid():
+            user = uf.save()
+            return django.http.HttpResponseRedirect("/")
+    else:
+        uf = UserForm(prefix='user')
+    return django.shortcuts.render_to_response('register.html',
+                                               dict(userform=uf),
+                                               context_instance=django.template.RequestContext(request))
