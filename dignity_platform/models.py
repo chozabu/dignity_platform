@@ -23,7 +23,7 @@ class CauseSupporterManager(models.Manager):
 		qs = self.get_queryset()
 		qs = qs.filter(person=person)
 		totalag = qs.aggregate(count=Sum('amount'))['count']
-		if reserved: totalag += reserved
+		if reserved: totalag = totalag/(1.-reserved)
 
 		qs.update(amount=F('amount') /totalag)
 		return qs
