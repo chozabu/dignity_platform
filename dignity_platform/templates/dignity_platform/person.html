@@ -6,9 +6,24 @@
 </head>
 <body>
 {% if person %}
+    <h2>{{ person.first_name }} {{ person.last_name }}</h2>
+
+
+    Work this person is offering to do:
+
     <ul>
-    <li>{{ person.first_name }}</li>
-    <li>{{ person.last_name }}</li>
+    {% for task in person.jobs_i_will_do.all %}
+        <li><a href="/jobs/{{ task.job.id }}/">{{ task.job.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+
+    Work this person wants done:
+
+    <ul>
+    {% for task in person.jobs_i_want_done.all %}
+        <li><a href="/jobs/{{ task.job.id }}/">{{ task.job.name }}</a></li>
+    {% endfor %}
     </ul>
 {% else %}
     <p>Couldn't find this person.</p>
