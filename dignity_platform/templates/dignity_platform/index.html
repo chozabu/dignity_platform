@@ -1,17 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dignity</title>
-</head>
-<body>
-Velcome to dignity.
-<br>
-<a href="/people" > People </a>
-<br>
-<a href="/jobs" > Jobs </a>
-<br>
-<a href="/causes" > Causes </a>
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}Dignity{% endblock %}
 
-</body>
-</html>
+{% block header_content %}<h1>Dignity</h1>{% endblock %}
+{% block content %}
+
+
+        <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <h2 class="section-heading">We've got what you need!</h2>
+                    <hr class="light">
+                    <p class="text-faded">Dignity has everything you need to support important causes and yourself or each other</p>
+                    <a href="/people" class="btn btn-default btn-xl">Get Started!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="no-padding" id="portfolio">
+        <div class="container-fluid">
+            <div class="row no-gutter">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="/people" class="portfolio-box">
+                        <img src="/img/portfolio/1.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    People
+                                </div>
+                                <div class="project-name">
+                                    The people using dignity
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="/causes" class="portfolio-box">
+                        <img src="/img/portfolio/2.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Causes
+                                </div>
+                                <div class="project-name">
+                                    What is being supported?
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="/jobs" class="portfolio-box">
+                        <img src="/img/portfolio/3.jpg" class="img-responsive" alt="">
+                        <div class="portfolio-box-caption">
+                            <div class="portfolio-box-caption-content">
+                                <div class="project-category text-faded">
+                                    Jobs
+                                </div>
+                                <div class="project-name">
+                                    What is being done?
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,18 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dignity</title>
-</head>
-<body>
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}People{% endblock %}
+
+{% block header_content %}<h1>People</h1>{% endblock %}
+
+
+
+
+{% block content %}
+
+
 {% if some_people %}
-    <ul>
+
+
+    <section id="people">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">At Your Service</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
     {% for person in some_people %}
-        <li><a href="/people/{{ person.id }}/">{{ person.get_full_name }}</a></li>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="/people/{{ person.id }}/">
+                        <i class="fa fa-4x fa-user wow bounceIn text-primary"></i>
+                        <h3>{{ person.first_name }}</h3>
+                        <p class="text-muted">{{ person.last_name }}.</p>
+                            </a>
+                    </div>
+                </div>
+
+
     {% endfor %}
-    </ul>
+                </div>
+        </div>
+    </section>
 {% else %}
     <p>No people are available.</p>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}

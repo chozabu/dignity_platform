@@ -1,32 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dignity</title>
-</head>
-<body>
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}Dignity: {{ job.name }}{% endblock %}
+
+{% block header_content %}<h1>{{ job.name }}</h1>{% endblock %}
+{% block content %}
 
 {% if job %}
-    <h2>{{ job.name }}</h2>
-    People offering to do this job:
 
-    <ul>
+
+    <section id="workers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Workers</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
     {% for worker in job.workers.all %}
-        <li><a href="/people/{{ worker.person.id }}/">{{ worker.person.get_full_name }}</a></li>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="/people/{{ worker.person.id }}/">
+                        <i class="fa fa-4x fa-user wow bounceIn text-primary"></i>
+                        <h3>{{ worker.person.get_full_name }}</h3>
+                        <p class="text-muted">{{ worker.person.info }}.</p>
+                            </a>
+                    </div>
+                </div>
+
+
     {% endfor %}
-    </ul>
+                </div>
+        </div>
+    </section>
 
 
-    People requesting this job to be done:
 
-    <ul>
+    <section id="workers">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Supporters</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
     {% for hirer in job.hirers.all %}
-        <li><a href="/people/{{ hirer.person.id }}/">{{ hirer.person.get_full_name }}</a></li>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="/people/{{ hirer.person.id }}/">
+                        <i class="fa fa-4x fa-user wow bounceIn text-primary"></i>
+                        <h3>{{ hirer.person.get_full_name }}</h3>
+                        <p class="text-muted">{{ hirer.person.info }}.</p>
+                            </a>
+                    </div>
+                </div>
+
+
     {% endfor %}
-    </ul>
+                </div>
+        </div>
+    </section>
 
 {% else %}
     <p>Couldn't find this job.</p>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}

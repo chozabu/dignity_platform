@@ -1,24 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dignity</title>
-</head>
-<body>
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}Dignity: {{ cause.name }}{% endblock %}
+
+{% block header_content %}<h1>{{ cause.name }}</h1>{% endblock %}
+{% block content %}
+
 {% if cause %}
-    <ul>
-    <li>{{ cause.name }}</li>
-    </ul>
 
-    People Supporting this Cause:
+    <section id="cause">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Supporters</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
 
-    <ul>
     {% for sup in cause.people_supporting_cause.all %}
-        <li><a href="/people/{{ sup.person.id }}/">{{ sup.person.get_full_name }}</a></li>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="/people/{{ sup.person.id }}/">
+                        <i class="fa fa-4x fa-user wow bounceIn text-primary"></i>
+                        <h3>{{ sup.person.get_full_name }}</h3>
+                        <p class="text-muted">{{ sup.person.info }}.</p>
+                            </a>
+                    </div>
+                </div>
+
+
     {% endfor %}
-    </ul>
+                </div>
+        </div>
+    </section>
+
 {% else %}
     <p>Couldn't find this cause.</p>
 {% endif %}
-</body>
-</html>
+
+
+{% endblock %}

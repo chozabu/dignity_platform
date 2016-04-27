@@ -1,18 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dignity</title>
-</head>
-<body>
+{% extends "dignity_platform/base_template.html" %}
+{% block title %}Causes{% endblock %}
+
+{% block header_content %}<h1>Jobs</h1>{% endblock %}
+{% block content %}
+
 {% if some_jobs %}
-    <ul>
+
+    <section id="jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Tasks</h2>
+                    <hr class="primary">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+
     {% for job in some_jobs %}
-        <li><a href="/jobs/{{ job.id }}/">{{ job.name }}</a></li>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="service-box">
+                        <a href="/jobs/{{ job.id }}/">
+                        <i class="fa fa-4x fa-cog wow bounceIn text-primary"></i>
+                        <h3>{{ job.name }}</h3>
+                        <p class="text-muted">{{ job.info }}.</p>
+                            </a>
+                    </div>
+                </div>
+
+
     {% endfor %}
-    </ul>
+                </div>
+        </div>
+    </section>
+
+
 {% else %}
     <p>No jobs are available.</p>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}
