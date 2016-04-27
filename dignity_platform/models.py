@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser, AbstractBaseUser, UserManag
 
 
 class Person(AbstractUser):
-	pass
+	self_support = models.FloatField(default=.49)
 
 
 class Cause(models.Model):
@@ -45,6 +45,7 @@ class Job(models.Model):
 class JobWorker(models.Model):
 	person = models.ForeignKey(Person, related_name='jobs_i_will_do')
 	job = models.ForeignKey(Job, related_name='workers')
+	price = models.FloatField(default=15.0)
 	def __str__(self):
 		return str(self.person) + " offers " + str(self.job)
 

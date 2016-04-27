@@ -20,5 +20,5 @@ class Command(BaseCommand):
         print(args)
         print(options)
         for u in Person.objects.all():
-            cs = CauseSupporter.objects.balance_user_support(u, .49)
+            cs = CauseSupporter.objects.balance_user_support(u, u.self_support)
             print(cs)
