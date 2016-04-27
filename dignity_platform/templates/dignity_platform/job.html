@@ -11,9 +11,8 @@
     People offering to do this job:
 
     <ul>
-    {{ job.workers.all }}
     {% for worker in job.workers.all %}
-        <li><a href="/people/{{ worker.id }}/">{{ worker.person.get_full_name }}</a></li>
+        <li><a href="/people/{{ worker.person.id }}/">{{ worker.person.get_full_name }}</a></li>
     {% endfor %}
     </ul>
 
@@ -21,9 +20,8 @@
     People requesting this job to be done:
 
     <ul>
-    {{ job.hirers.all }}
     {% for hirer in job.hirers.all %}
-        <li><a href="/people/{{ hirer.id }}/">{{ hirer.person.get_full_name }}</a></li>
+        <li><a href="/people/{{ hirer.person.id }}/">{{ hirer.person.get_full_name }}</a></li>
     {% endfor %}
     </ul>
 
