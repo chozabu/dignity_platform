@@ -5,11 +5,13 @@ __copyright__ = "Copyright 2016, IAgree"
 
 import django
 from .models import Person, JobHirer, JobWorker, CauseSupporter, Job, Cause
+from django.contrib.auth.forms import UserCreationForm
 
-class UserForm(django.forms.ModelForm):
+class UserForm(UserCreationForm):
+    #password = django.forms.CharField(widget=django.forms.PasswordInput())
     class Meta:
         model = Person
-        fields = ['username', 'first_name', 'last_name', 'email', 'password']
+        fields = ['username', 'first_name', 'last_name', 'email']
 
 
 class ServiceForm(django.forms.ModelForm):

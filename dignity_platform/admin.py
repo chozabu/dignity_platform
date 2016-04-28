@@ -3,8 +3,12 @@ from django.contrib import admin
 # Register your models here.
 
 from . import models
+from django.contrib.auth.admin import UserAdmin
 
-admin.site.register(models.Person)
+class PersonAdmin(UserAdmin):
+    pass
+
+admin.site.register(models.Person, PersonAdmin)
 admin.site.register(models.Cause)
 admin.site.register(models.CauseSupporter)
 admin.site.register(models.Job)
