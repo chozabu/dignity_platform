@@ -60,11 +60,22 @@ def person(request, person_id):
     return HttpResponse(template.render(context, request))
 
 def jobs(request):
+    if request.method == 'POST':
+        uf = forms.JobForm(request.POST)
+        if uf.is_valid():
+            service = uf.save(commit=False)
+            #service.person = request.user
+            service.save()
+            return django.http.HttpResponseRedirect("/jobs/")
+        else:
+            print("invalid", uf.errors)
     some_jobs = Job.objects.order_by('?')[:5]
     template = loader.get_template('dignity_platform/jobs.html')
     context = {
         'some_jobs': some_jobs,
     }
+    if request.user.is_authenticated():
+        context['job_form'] = forms.JobForm
     return HttpResponse(template.render(context, request))
 
 def job(request, job_id):
@@ -78,11 +89,22 @@ def job(request, job_id):
 
 
 def causes(request):
+    if request.method == 'POST':
+        uf = forms.CauseForm(request.POST)
+        if uf.is_valid():
+            service = uf.save(commit=False)
+            #service.person = request.user
+            service.save()
+            return django.http.HttpResponseRedirect("/causes/")
+        else:
+            print("invalid", uf.errors)
     some_causes = Cause.objects.order_by('?')[:5]
     template = loader.get_template('dignity_platform/causes.html')
     context = {
         'some_causes': some_causes,
     }
+    if request.user.is_authenticated():
+        context['cause_form'] = forms.CauseForm
     return HttpResponse(template.render(context, request))
 
 def cause(request, cause_id):

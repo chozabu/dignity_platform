@@ -12,6 +12,31 @@
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Tasks</h2>
                     <hr class="primary">
+                       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#supporting-modal">+</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="supporting-modal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Job Type</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+              <form method="POST" action="">
+                {% csrf_token %}
+                {{job_form.as_p}}
+                <input type="submit">
+            </form>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
                 </div>
             </div>
         </div>
