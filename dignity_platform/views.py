@@ -21,7 +21,7 @@ def index(request):
 
 
 def people(request):
-    some_people = Person.objects.order_by('?')[:5]
+    some_people = Person.objects.order_by('?')
     template = loader.get_template('dignity_platform/people.html')
     context = {
         'some_people': some_people,
@@ -69,7 +69,7 @@ def jobs(request):
             return django.http.HttpResponseRedirect("/jobs/")
         else:
             print("invalid", uf.errors)
-    some_jobs = Job.objects.order_by('?')[:5]
+    some_jobs = Job.objects.order_by('?')
     template = loader.get_template('dignity_platform/jobs.html')
     context = {
         'some_jobs': some_jobs,
@@ -98,7 +98,7 @@ def causes(request):
             return django.http.HttpResponseRedirect("/causes/")
         else:
             print("invalid", uf.errors)
-    some_causes = Cause.objects.order_by('?')[:5]
+    some_causes = Cause.objects.order_by('?')
     template = loader.get_template('dignity_platform/causes.html')
     context = {
         'some_causes': some_causes,
