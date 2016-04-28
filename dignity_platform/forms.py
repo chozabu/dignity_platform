@@ -4,7 +4,7 @@ __author__ = "Alex 'Chozabu' P-B"
 __copyright__ = "Copyright 2016, IAgree"
 
 import django
-from .models import Person, JobHirer, JobWorker
+from .models import Person, JobHirer, JobWorker, CauseSupporter
 
 class UserForm(django.forms.ModelForm):
     class Meta:
@@ -16,6 +16,10 @@ class ServiceForm(django.forms.ModelForm):
     class Meta:
         model = JobWorker
         fields = ['job', 'price']
+class SupportingForm(django.forms.ModelForm):
+    class Meta:
+        model = CauseSupporter
+        fields = ['cause', 'amount']
 
 
 

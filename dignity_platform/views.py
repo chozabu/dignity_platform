@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from django.template import loader
 
-from .models import Person, Cause, Job, JobWorker
+from .models import Person, Cause, Job, JobWorker, CauseSupporter
 
 from django.contrib.auth.forms import UserCreationForm
 import django
@@ -38,6 +38,16 @@ def person(request, person_id):
             return django.http.HttpResponseRedirect("/people/"+str(request.user.id))
         else:
             print("invalid", uf.errors)
+        uf = forms.SupportingForm(request.POST)
+        if uf.is_valid():
+            service = uf.save(commit=False)
+            service.person = request.user
+            service.save()
+            u = request.user
+            CauseSupporter.objects.balance_user_support(u, u.self_support)
+            return django.http.HttpResponseRedirect("/people/"+str(request.user.id))
+        else:
+            print("invalid", uf.errors)
     person = Person.objects.filter(id=person_id).first()
     template = loader.get_template('dignity_platform/person.html')
     context = {
@@ -46,6 +56,7 @@ def person(request, person_id):
     }
     if request.user.is_authenticated():
         context['services_form'] = forms.ServiceForm
+        context['supporting_form'] = forms.SupportingForm
     return HttpResponse(template.render(context, request))
 
 def jobs(request):
@@ -102,4 +113,15 @@ def remove_service(request, person_id = None, service_id= None):
             print(service_id)
             service = JobWorker.objects.filter(person=request.user, id=service_id)
             service.delete()
+    return django.http.HttpResponseRedirect("/people/" + str(request.user.id))
+
+
+def remove_support(request, person_id = None, support_id= None):
+    if request.method == 'POST':
+        if request.user.is_authenticated():
+            print(support_id)
+            service = CauseSupporter.objects.filter(person=request.user, id=support_id)
+            service.delete()
+            u = request.user
+            CauseSupporter.objects.balance_user_support(u, u.self_support)
     return django.http.HttpResponseRedirect("/people/" + str(request.user.id))
